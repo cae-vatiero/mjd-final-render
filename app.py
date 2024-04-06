@@ -1,19 +1,19 @@
-from flask import Flask
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 @app.route("/home")
 def index():
-  return "Esse é um teste do site"
+  return render_template("home.html")
 
 @app.route("/sobremim")
 def sobremim():
-  return "teste sobre mim lala"
+  return "sobremim.html"
 
 @app.route ("/portfolio")
 def porfolio():
-  return "meu porfolio"
+  return "porfolio.html"
 
 @app.route("/contato")
 def contato():
-  return "meus contatos"
+  return "contato.html"
