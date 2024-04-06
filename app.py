@@ -12,7 +12,7 @@ def sobremim():
 
 @app.route ("/portfolio")
 def porfolio():
-  return render_template("porfolio.html")
+  return render_template("portfolio.html")
 
 @app.route("/contato")
 def contato():
