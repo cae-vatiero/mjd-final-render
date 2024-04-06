@@ -6,10 +6,6 @@ app = Flask(__name__)
 def index():
   return render_template("home.html")
 
-@app.route("/home")
-def index():
-  return render_template("home.html")
-
 @app.route("/sobremim")
 def sobremim():
   return render_template("sobremim.html")
