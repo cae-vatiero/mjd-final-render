@@ -1,2 +1,15 @@
 Flask
 gunicorn
+newspaper3k
+nltk
+openai
+gnews
+gspread
+oauth2client
+service_account 
+ServiceAccountCredentials
+lxml_html_clean
+lxml
+python-dotenv
+
+
