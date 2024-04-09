@@ -68,10 +68,10 @@ def raspagem():
         nova_aba = noticias_selecionadas(com_violacao)
 
         # Retirando temas duplicados
-        lista_final = verifica_tema_duplicado(nova_aba)
+        #lista_final = verifica_tema_duplicado(nova_aba)
 
         # Categorizando as violações
-        raspagem_final = classifica_violacao(lista_final) 
+        classifica_violacao() 
 
     return """
     <html>
