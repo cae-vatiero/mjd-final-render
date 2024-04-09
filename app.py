@@ -50,28 +50,27 @@ def contato():
 def raspagem():
     
     # Palavras-chave para a busca de notícias
-    palavra_chave = ["jornalista AND atacado", "jornalista AND ameaçado"]
+    palavra_chave = "jornalista AND atacado"
 
-    for noticia in palavra_chave:
-        # Raspando as notícias, resumindo e subindo na planilha
-        todas_noticias = pega_noticia(noticia)
-        noticias_resumidas = adiciona_resumo(todas_noticias)
-        noticias_na_planilha = coloca_na_planilha(noticias_resumidas)
+    # Raspando as notícias, resumindo e subindo na planilha
+    todas_noticias = pega_noticia(palavra_chave)
+    noticias_resumidas = adiciona_resumo(todas_noticias)
+    noticias_na_planilha = coloca_na_planilha(noticias_resumidas)
 
-        # Utilizando o ChatGPT para identificar se são casos que ocorreram no Brasil
-        casos_brasileiros = identifica_casos_brasileiros(noticias_na_planilha)
+    # Utilizando o ChatGPT para identificar se são casos que ocorreram no Brasil
+    casos_brasileiros = identifica_casos_brasileiros(noticias_na_planilha)
 
-        # Utilizando o ChatGPT para identificar se é um caso de violação
-        com_violacao = identifica_violacao(casos_brasileiros)
+    # Utilizando o ChatGPT para identificar se é um caso de violação
+    com_violacao = identifica_violacao(casos_brasileiros)
 
-        # Subindo as notícias selecionadas em outra aba
-        nova_aba = noticias_selecionadas(com_violacao)
+    # Subindo as notícias selecionadas em outra aba
+    nova_aba = noticias_selecionadas(com_violacao)
 
-        # Retirando temas duplicados
-        #lista_final = verifica_tema_duplicado(nova_aba)
+    # Retirando temas duplicados
+    #lista_final = verifica_tema_duplicado(nova_aba)
 
-        # Categorizando as violações
-        classifica_violacao() 
+    # Categorizando as violações
+    classifica_violacao()
 
     return """
     <html>
@@ -83,6 +82,7 @@ def raspagem():
     </body>
     </html>
     """
+
 
 @app.route("/monitoramento")
 def monitoramento():
