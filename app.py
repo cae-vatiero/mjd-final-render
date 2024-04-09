@@ -14,8 +14,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 import nltk
 nltk.download('punkt')
 
-
-
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -75,7 +73,7 @@ def raspagem():
         # Categorizando as violações
         raspagem_final = classifica_violacao(lista_final) 
 
-    return raspagem_final
+    return "raspagem em execução.html"
 
 @app.route("/monitoramento")
 def monitoramento():
