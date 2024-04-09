@@ -306,7 +306,7 @@ def verifica_tema_duplicado(duplicado):
 
 """##Categorizando as notícias limpas"""
 
-def classifica_violacao(casos):
+def classifica_violacao():
 
   noticias_limpas = planilha.worksheet('noticias_limpas')
   todas_noticias = noticias_limpas.get_all_records()
@@ -362,8 +362,7 @@ def classifica_violacao(casos):
         print("Atualização na linha", index, "com resposta:", resposta)
 
 
-  print("Noticias limpas devidamente classificadas")
-  return casos
+  return "Noticias limpas devidamente classificadas"
 
 """##Pegando as últimas atualizações"""
 
