@@ -73,7 +73,16 @@ def raspagem():
         # Categorizando as violações
         raspagem_final = classifica_violacao(lista_final) 
 
-    return "raspagem em execução.html"
+    return """
+    <html>
+    <head>
+        <title>Página de Raspagem</title>
+    </head>
+    <body>
+        <h1>Essa é uma página de raspagem</h1>
+    </body>
+    </html>
+    """
 
 @app.route("/monitoramento")
 def monitoramento():
