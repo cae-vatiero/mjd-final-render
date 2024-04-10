@@ -42,7 +42,7 @@ def contato():
 def raspagem():
     
     # Palavras-chave para a busca de notícias
-    palavra_chave = "jornalista AND atacado"
+    palavra_chave = "ataque AND jornalista"
     
     # Raspando as notícias, resumindo e subindo na planilha
     todas_noticias = pega_noticia(palavra_chave)
