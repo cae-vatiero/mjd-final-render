@@ -42,7 +42,7 @@ def contato():
 def raspagem():
     
     # Palavras-chave para a busca de notícias
-    palavra_chave = "ataque AND jornalista"
+    palavra_chave = "ataque AND imprensa"
     
     # Raspando as notícias, resumindo e subindo na planilha
     todas_noticias = pega_noticia(palavra_chave)
@@ -89,7 +89,7 @@ def monitoramento():
         <title>Atualizações do Monitoramento de PPD</title>
       </head>
       <body>
-        <h1>Monitoramento violações contra comunicadores - ARTIGO19</h1>
+        <h1>Monitoramento violações contra comunicadores</h1>
         <p>
           As notícias coletadas nos últimos 7 dias foram:
           <ul>
@@ -97,16 +97,6 @@ def monitoramento():
 
     # Adiciona cada notícia à página HTML
     ultimas_noticias = ultimas_atualizacoes()
-    html += """
-            <!DOCTYPE html>
-            <html>
-            <head>
-              <title>Últimas Atualizações</title>
-            </head>
-            <body>
-              <h1>Últimas Atualizações</h1>
-              <ul>
-    """
 
     for noticia in ultimas_noticias:
         titulo = noticia[0]
