@@ -1,18 +1,15 @@
 #fazendo as importações
 from monitoramento import (
-    pega_noticia, adiciona_resumo, coloca_na_planilha,
+    pega_noticia, coloca_na_planilha,
     identifica_casos_brasileiros, identifica_violacao,
     noticias_selecionadas,
-    classifica_violacao, ultimas_atualizacoes
+    classifica_violacao
 )
 from gnews import GNews
 google_news = GNews()
 import gspread
 import os 
 from oauth2client.service_account import ServiceAccountCredentials
-import nltk
-
-nltk.download('punkt')
 
 from dotenv import load_dotenv
 
@@ -40,8 +37,7 @@ palavra_chave = "jornalista AND atacado"
 
 # Raspando as notícias, resumindo e subindo na planilha
 todas_noticias = pega_noticia(palavra_chave)
-noticias_resumidas = adiciona_resumo(todas_noticias)
-noticias_na_planilha = coloca_na_planilha(noticias_resumidas)
+noticias_na_planilha = coloca_na_planilha(noticias_na_planilha)
 
 # Utilizando o ChatGPT para identificar se são casos que ocorreram no Brasil
 casos_brasileiros = identifica_casos_brasileiros(noticias_na_planilha)
