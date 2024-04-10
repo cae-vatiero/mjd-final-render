@@ -1,11 +1,10 @@
 from flask import Flask, render_template
-from monitoramento import (pega_noticia, adiciona_resumo, coloca_na_planilha,
+from monitoramento import (pega_noticia, coloca_na_planilha,
                         identifica_casos_brasileiros, identifica_violacao,
                         noticias_selecionadas, classifica_violacao, ultimas_atualizacoes)
 import gspread
 import os 
 from oauth2client.service_account import ServiceAccountCredentials
-
 from dotenv import load_dotenv
 
 load_dotenv()
