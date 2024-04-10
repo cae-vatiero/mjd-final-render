@@ -278,7 +278,6 @@ def ultimas_atualizacoes():
   for index, noticia in enumerate(todas_noticias, start=2):
 
         titulo = noticia["título"]
-        descricao = noticia["descrição"]
         url = noticia["url"]
         veiculo = noticia["veículo"]
         categoria = noticia["categoria e justificativa"]
