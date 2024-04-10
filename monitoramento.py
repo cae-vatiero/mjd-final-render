@@ -5,11 +5,6 @@ import gspread
 import os 
 import time
 from oauth2client.service_account import ServiceAccountCredentials
-from newspaper import Article
-import nltk
-nltk.download('punkt')
-
-
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -57,29 +52,8 @@ def pega_noticia(tema):
 
     noticias_raspadas.append(noticia)
 
-
   print("As notícias foram raspadas.")
   return noticias_raspadas
-
-def adiciona_resumo(todas_noticias):
-
-    for noticia in todas_noticias:
-
-        try:
-            article = Article(noticia['url'])
-            print("mexendo no arquivo")
-            article.download()
-            article.parse()
-            article.nlp()
-            novo_resumo = article.summary
-            noticia['description'] = novo_resumo
-
-        except Exception as e:
-            print(f"Erro ao processar a notícia: {e}")
-            continue  # Pula para a próxima notícia em caso de erro
-
-    print("Os resumos foram adicionados.")
-    return todas_noticias
 
 def coloca_na_planilha(noticias_raspadas):
 
@@ -128,16 +102,12 @@ def identifica_casos_brasileiros(noticias_brasileiras):
 
         do_brasil = noticia["caso brasileiro"]
         if "Sim" in do_brasil or "Não" in do_brasil or "Sim." in do_brasil or "Não." in do_brasil:  # Verifica se já foi preenchida
-          print("Pulei as notícias que já foram avaliadas.")
           continue  # Pula para próxima notícia
-          
+          print("Pulei as notícias que já foram avaliadas.")
 
         titulo = noticia["título"]
-        resumo = noticia["descrição"]
 
         pergunta_completa = pergunta1 + titulo + """
-
-        """ + resumo + """
 
         """ + pergunta2
 
@@ -152,7 +122,7 @@ def identifica_casos_brasileiros(noticias_brasileiras):
             )
 
         resposta = chat.choices[0].message.content
-        time.sleep(1)
+
         sheet.update_cell(index, 6, resposta)
   print("Identificação de casos que aconteceram no Brasil concluído.")
   return noticias_brasileiras
@@ -184,11 +154,9 @@ def identifica_violacao(violacao):
 
     else:
       titulo = noticia["título"]
-      resumo = noticia["descrição"]
+      #resumo = noticia["descrição"]
 
       pergunta_completa = pergunta1 + titulo + """
-
-            """ + resumo + """
 
             """ + pergunta2
 
@@ -203,7 +171,7 @@ def identifica_violacao(violacao):
                 )
 
       resposta = chat.choices[0].message.content
-      time.sleep(1)
+
       sheet.update_cell(index, 7, resposta)
       print("Atualização na linha", index, "com resposta:", resposta)
 
@@ -242,71 +210,6 @@ def noticias_selecionadas(limpas):
   print("Noticias limpas selecionadas e adicionadas na segunda aba da planilha")
   return limpas
 
-"""##Retira notícias de diferentes portais que falem do mesmo tema"""
-
-def verifica_tema_duplicado(duplicado):
-
-  noticias_limpas = planilha.worksheet('noticias_limpas')
-  dicionario_de_noticias = noticias_limpas.get_all_records()
-
-  pergunta = """Chat, eu vou te dar o título de uma notícia e uma lista com outras notícias. Eu quero que você veja se por acaso a informação que tem no título que eu te passei já consta nessa lista.
-
-      Os títulos não vão estar iguais, mas podem estar falando do mesmo assunto. Nesse caso, você deve responder APENAS com "Sim" ou "Não".
-
-      Título:
-
-      """
-  lista = """Lista:
-
-      """
-
-
-  for index, noticia in enumerate(dicionario_de_noticias, start=2):
-
-              titulo = noticia["título"]
-              duplicado = noticia["tema duplicado"]
-
-              if "sem duplicata" in duplicado:
-                print("Não há duplicata de temas")
-                continue
-
-              # Código para pegar os títulos das outras notícias que não são iguais ao título atual
-
-              outros_titulos = [outra_noticia["título"] for outra_noticia in dicionario_de_noticias if outra_noticia["título"] != titulo]
-              outros_titulos_str = "\n".join(outros_titulos)
-
-
-              pergunta_completa = pergunta + titulo + """
-
-              """ + lista + """
-
-              """ + outros_titulos_str
-
-              chat = client.chat.completions.create(
-                      messages=[
-                          {
-                              "role": "user",
-                              "content": pergunta_completa,
-                          }
-                      ],
-                      model="gpt-3.5-turbo",
-                  )
-
-              resposta = chat.choices[0].message.content
-
-
-              if resposta == "Sim":
-                noticias_limpas.delete_rows(index)
-                print(f"Linha {index} apagada. Título: {titulo}")
-
-  num_linhas = len(noticias_limpas.col_values(1))  # Obter o número total de linhas
-  for i in range(2, num_linhas + 1):
-          time.sleep(1)
-          noticias_limpas.update_cell(i, 8, "sem duplicata")
-
-  print("Mensagem 'está ok' adicionada em todas as linhas restantes na coluna 8.")
-  return "Processo de limpeza concluído com sucesso."
-
 """##Categorizando as notícias limpas"""
 
 def classifica_violacao():
@@ -343,11 +246,8 @@ def classifica_violacao():
 
     else:
         titulo = noticia["título"]
-        resumo = noticia["descrição"]
 
-        pergunta_completa = pergunta + titulo + """
-
-             """ + resumo
+        pergunta_completa = pergunta + titulo 
 
         chat = client.chat.completions.create(
                       messages=[
@@ -360,10 +260,11 @@ def classifica_violacao():
                   )
 
         resposta = chat.choices[0].message.content
-        time.sleep(1)
+
         noticias_limpas.update_cell(index, 9, resposta)
         print("Atualização na linha", index, "com resposta:", resposta)
 
+ 
   return "Noticias limpas devidamente classificadas"
 
 """##Pegando as últimas atualizações"""
