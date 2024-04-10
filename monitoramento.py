@@ -282,15 +282,7 @@ def ultimas_atualizacoes():
         url = noticia["url"]
         veiculo = noticia["veículo"]
         categoria = noticia["categoria e justificativa"]
-        email= noticia["e-mail enviado"]
-
-        #if "Enviado" in email:
-          #print("Notícia já enviada por e-mail na última semana")
-          #continue
-
-        #else:
 
         resposta.append([titulo, descricao, url, veiculo, categoria])
-          #noticias_limpas.update_cell(index, 10, "Enviado")
 
   return resposta
