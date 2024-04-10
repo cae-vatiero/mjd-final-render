@@ -1,6 +1,7 @@
 from flask import Flask, render_template
-from monitoramento import ultimas_atualizacoes
-
+from monitoramento import (pega_noticia, adiciona_resumo, coloca_na_planilha,
+                        identifica_casos_brasileiros, identifica_violacao,
+                        noticias_selecionadas, classifica_violacao, ultimas_atualizacoes)
 import gspread
 import os 
 from oauth2client.service_account import ServiceAccountCredentials
@@ -46,7 +47,7 @@ def raspagem():
     
     # Raspando as notícias, resumindo e subindo na planilha
     todas_noticias = pega_noticia(palavra_chave)
-    noticias_na_planilha = coloca_na_planilha(noticias_resumidas)
+    noticias_na_planilha = coloca_na_planilha(todas_noticias)
     
     # Utilizando o ChatGPT para identificar se são casos que ocorreram no Brasil
     casos_brasileiros = identifica_casos_brasileiros(noticias_na_planilha)
