@@ -281,6 +281,7 @@ def ultimas_atualizacoes():
         url = noticia["url"]
         veiculo = noticia["veículo"]
         categoria = noticia["categoria e justificativa"]
+        descricao = noticia["descrição"]
 
         resposta.append([titulo, descricao, url, veiculo, categoria])
 
