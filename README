@@ -1,0 +1,19 @@
+Monitoramento de violações contra comunicadores
+
+Esse projeto é um protótipo de monitoramento de ataques a jornalistas e comunicadores. É um trabalho que vem sendo feito de forma totalmente manual e o objetivo final é automatizar esse processo e classificar as violações (física, virtual, assédio jucidial e etc) com ajuda de inteligência artificial
+
+📋 Bibliotecas utilizadas
+1. gnews
+2. openai
+3. gspread
+4. time
+
+🚀 Vamos lá!
+1. Faça o clone deste repositório para o seu ambiente local.
+2. Certifique-se de ter todas as dependências necessárias instaladas (consulte o arquivo requirements.txt).
+3. Inicie o servidor Flask executando o arquivo app.py.
+4. Acesse o aplicativo através do navegador web.
+5. Faça a conexão com o Google SpreadSheets e com a API do ChatGPT e crie varáveis de ambiente.
+6. Clone o seu repositório no Render e utilize o PipeDream para ativar o @app.route raspagem periodicamente
+7. Ao clicar em "monitoramento" você será direcionao as últimas notificações de acordo com o tempo definido de raspagem pela biblioteca gnews
+
