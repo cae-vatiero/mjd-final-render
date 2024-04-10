@@ -108,7 +108,6 @@ def monitoramento():
         html += f"""
         <li>
           <strong>Título:</strong> {titulo}<br>
-          <strong>Descrição:</strong> {descricao}<br>
           <strong>URL:</strong> <a href="{url}">{url}</a><br>
           <strong>Veículo:</strong> {veiculo}<br>
           <strong>Categoria:</strong> {categoria}
