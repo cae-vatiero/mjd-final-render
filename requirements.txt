@@ -1,7 +1,5 @@
 Flask
 gunicorn
-newspaper3k
-nltk
 openai
 gnews
 gspread
