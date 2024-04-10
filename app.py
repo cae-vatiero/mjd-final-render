@@ -38,6 +38,40 @@ def portfolio():
 def contato():
     return render_template("contato.html")
 
+@app.route("/raspagem")
+def raspagem():
+    
+    # Palavras-chave para a busca de notícias
+    palavra_chave = "jornalista AND atacado"
+    
+    # Raspando as notícias, resumindo e subindo na planilha
+    todas_noticias = pega_noticia(palavra_chave)
+    noticias_na_planilha = coloca_na_planilha(noticias_resumidas)
+    
+    # Utilizando o ChatGPT para identificar se são casos que ocorreram no Brasil
+    casos_brasileiros = identifica_casos_brasileiros(noticias_na_planilha)
+    
+    # Utilizando o ChatGPT para identificar se é um caso de violação
+    com_violacao = identifica_violacao(casos_brasileiros)
+    
+    # Subindo as notícias selecionadas em outra aba
+    nova_aba = noticias_selecionadas(com_violacao)
+
+    # Categorizando as violações
+    classifica_violacao()
+    
+    return """
+    <html>
+    <head>
+        <title>Página de Raspagem</title>
+    </head>
+    <body>
+        <h1>Essa é uma página de raspagem</h1>
+        <h1>A raspagem foi realizada.</h1>
+    </body>
+    </html>
+    """
+
 @app.route("/monitoramento")
 def monitoramento():
     # Inicia a construção do corpo da página HTML
