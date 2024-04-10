@@ -24,7 +24,7 @@ sheet = planilha.worksheet("raspagem_bruta")
 google_news.country = 'Brasil'
 google_news.language = 'portuguese brasil'
 google_news.period = '7d'
-google_news.max_results = 3
+google_news.max_results = 1
 
 """##Raspando as notícias, resumindo e subindo na planilha"""
 
