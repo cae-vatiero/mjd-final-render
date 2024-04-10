@@ -29,7 +29,7 @@ sheet = planilha.worksheet("raspagem_bruta")
 google_news.country = 'Brasil'
 google_news.language = 'portuguese brasil'
 google_news.period = '7d'
-google_news.max_results = 1
+google_news.max_results = 3
 
 """##Raspando as notícias, resumindo e subindo na planilha"""
 
@@ -67,6 +67,7 @@ def adiciona_resumo(todas_noticias):
 
         try:
             article = Article(noticia['url'])
+            print("mexendo no arquivo")
             article.download()
             article.parse()
             article.nlp()
@@ -100,6 +101,7 @@ def coloca_na_planilha(noticias_raspadas):
 """##Filtrando notícias que aconteceram no brasil e se houve violação"""
 
 openai_api_key = os.getenv("openai_api_key")
+
 # Coloque aqui a api key que você colou de lá.
 openai_api_key = os.environ["openai_api_key"]
 
@@ -126,8 +128,9 @@ def identifica_casos_brasileiros(noticias_brasileiras):
 
         do_brasil = noticia["caso brasileiro"]
         if "Sim" in do_brasil or "Não" in do_brasil or "Sim." in do_brasil or "Não." in do_brasil:  # Verifica se já foi preenchida
-          continue  # Pula para próxima notícia
           print("Pulei as notícias que já foram avaliadas.")
+          continue  # Pula para próxima notícia
+          
 
         titulo = noticia["título"]
         resumo = noticia["descrição"]
@@ -360,7 +363,6 @@ def classifica_violacao():
         time.sleep(1)
         noticias_limpas.update_cell(index, 9, resposta)
         print("Atualização na linha", index, "com resposta:", resposta)
-
 
   return "Noticias limpas devidamente classificadas"
 
