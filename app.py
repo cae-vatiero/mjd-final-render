@@ -78,7 +78,7 @@ def raspagem():
         <title>Página de Raspagem</title>
     </head>
     <body>
-        <h1>Essa é uma página de raspagem</h1>
+        <h1>A raspagem foi realizada.</h1>
     </body>
     </html>
     """
@@ -101,9 +101,9 @@ def monitoramento():
     <title>Atualizações do Monitoramento de PPD</title>
   </head>
   <body>
-    <h1>Monitoramento violações contra comunicadores - ARTIGO19</h1>
+    <h1>Monitoramento violações contra comunicadores</h1>
     <p>
-      As notícias coletadas nos últimos 7 dias foram:
+      As notícias coletadas nos últimos sete dias seguem abaixo.
       <ul>
 """
 
@@ -116,7 +116,6 @@ def monitoramento():
         <title>Últimas Atualizações</title>
       </head>
       <body>
-        <h1>Últimas Atualizações</h1>
         <ul>
     """
 
